@@ -10,8 +10,9 @@ class IBLinterRunner
   end
 
   def lint(path, options)
+    command = lint_command(options)
     Dir.chdir path
-    JSON.parse(run(lint_command(options)))
+    JSON.parse(run(command))
   end
 
   def lint_command(options)
