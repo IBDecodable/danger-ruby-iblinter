@@ -30,11 +30,11 @@ module Danger
         allow(File).to receive(:exist?).and_return(true)
         @iblinter.lint("/home/projects")
         errors = [
-          Violation.new("Error message", false, "bar/File.xib", 0),
+          Violation.new("Error message", false, "bar/File.xib", nil),
           Violation.new("Failed due to IBLinter errors", false, nil, nil)
         ]
         warnings = [
-          Violation.new("Warning message", false, "foo/File.xib", 0)
+          Violation.new("Warning message", false, "foo/File.xib", nil)
         ]
         expect(@iblinter.violation_report[:errors]).to eq errors
         expect(@iblinter.violation_report[:warnings]).to eq warnings
