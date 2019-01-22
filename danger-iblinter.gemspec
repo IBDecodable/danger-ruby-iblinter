@@ -5,7 +5,7 @@ require 'iblinter/gem_version.rb'
 
 Gem::Specification.new do |spec|
   spec.name          = 'danger-iblinter'
-  spec.version       = IBLinter::VERSION
+  spec.version       = Iblinter::VERSION
   spec.authors       = ['Yuta Saito']
   spec.email         = ['kateinoigakukun@gmail.com']
   spec.description   = %q{A danger plugin for linting Interface Builder files with IBLinter.}

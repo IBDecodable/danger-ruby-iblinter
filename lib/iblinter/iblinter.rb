@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class IBLinter
+class IBLinterRunner
   def initialize(binary_path)
     @binary_path = binary_path
   end

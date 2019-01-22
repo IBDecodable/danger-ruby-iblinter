@@ -14,7 +14,7 @@ module Danger
   # @see  IBDecodable/IBLinter
   # @tags swift
   #
-  class DangerIBLinter < Plugin
+  class DangerIblinter < Plugin
     # The path to IBLinter"s execution
     # @return  [void]
     attr_accessor :binary_path
@@ -49,9 +49,9 @@ module Danger
     end
 
     # Instantiate iblinter
-    # @return     [IBLinter]
+    # @return     [IBLinterRunner]
     def iblinter
-      IBLinter.new(@binary_path)
+      IBLinterRunner.new(@binary_path)
     end
 
     private

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module IBLinter
+module Iblinter
   VERSION = "0.0.1"
 end

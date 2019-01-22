@@ -3,9 +3,9 @@
 require File.expand_path("spec_helper", __dir__)
 
 module Danger
-  describe Danger::DangerIBLinter do
+  describe Danger::DangerIblinter do
     it "should be a plugin" do
-      expect(Danger::DangerIBLinter.new(nil)).to be_a Danger::Plugin
+      expect(Danger::DangerIblinter.new(nil)).to be_a Danger::Plugin
     end
 
     describe "with Dangerfile" do
@@ -20,7 +20,7 @@ module Danger
       end
 
       it "inline comment works with relative path" do
-        linter = IBLinter.new("/path/to/binary")
+        linter = IBLinterRunner.new("/path/to/binary")
         allow(linter).to receive(:lint) do
           JSON.parse(File.read(File.dirname(__FILE__) + "/support/fixtures/iblinter.json"))
         end
