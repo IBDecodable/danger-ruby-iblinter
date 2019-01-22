@@ -5,11 +5,11 @@ require 'iblinter/gem_version.rb'
 
 Gem::Specification.new do |spec|
   spec.name          = 'danger-iblinter'
-  spec.version       = Iblinter::VERSION
+  spec.version       = IBLinter::VERSION
   spec.authors       = ['Yuta Saito']
   spec.email         = ['kateinoigakukun@gmail.com']
-  spec.description   = %q{A short description of danger-iblinter.}
-  spec.summary       = %q{A longer description of danger-iblinter.}
+  spec.description   = %q{A danger plugin for linting Interface Builder files with IBLinter.}
+  spec.summary       = %q{A danger plugin for linting Interface Builder files with IBLinter.}
   spec.homepage      = 'https://github.com/IBDecodable/danger-ruby-iblinter'
   spec.license       = 'MIT'
 

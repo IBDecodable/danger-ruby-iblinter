@@ -3,9 +3,9 @@
 require File.expand_path("spec_helper", __dir__)
 
 module Danger
-  describe Danger::DangerIblinter do
+  describe Danger::DangerIBLinter do
     it "should be a plugin" do
-      expect(Danger::DangerIblinter.new(nil)).to be_a Danger::Plugin
+      expect(Danger::DangerIBLinter.new(nil)).to be_a Danger::Plugin
     end
 
     describe "with Dangerfile" do

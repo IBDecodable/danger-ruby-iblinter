@@ -14,11 +14,7 @@ module Danger
   # @see  IBDecodable/IBLinter
   # @tags swift
   #
-  class DangerIblinter < Plugin
-    # The path to IBLinter"s configuration file
-    # @return  [void]
-    attr_accessor :config_file
-
+  class DangerIBLinter < Plugin
     # The path to IBLinter"s execution
     # @return  [void]
     attr_accessor :binary_path

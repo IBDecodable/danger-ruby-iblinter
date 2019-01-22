@@ -1,15 +1,21 @@
-# danger-iblinter
+# Danger IBLinter
 
-A description of danger-iblinter.
+A danger plugin for IBLinter.
 
 ## Installation
 
-    $ gem install danger-iblinter
+```
+gem 'danger-swiftlint'
+```
+
+This plugin requires `iblinter` executable binary.
 
 ## Usage
 
-    Methods and attributes from this plugin are available in
-    your `Dangerfile` under the `iblinter` namespace.
+```
+iblinter.binary_path = "./Pods/IBLinter/bin/iblinter"
+iblinter.lint("./path/to/project", fail_on_warning: true, inline_mode: true)
+```
 
 ## Development
 
