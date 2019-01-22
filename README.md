@@ -1,6 +1,6 @@
 # Danger IBLinter
 
-[![Build Status](https://travis-ci.org/IBDecodable/danger-ruby-iblinter.svg?branch=master)](https://travis-ci.org/IBDecodable/danger-ruby-iblinter)
+[![Build Status](https://travis-ci.org/IBDecodable/danger-ruby-iblinter.svg?branch=master)](https://travis-ci.org/IBDecodable/danger-ruby-iblinter) [![Gem Version](https://badge.fury.io/rb/danger-iblinter.svg)](https://badge.fury.io/rb/danger-iblinter)
 
 A danger plugin for IBLinter.
 
@@ -18,6 +18,12 @@ This plugin requires `iblinter` executable binary.
 iblinter.binary_path = "./Pods/IBLinter/bin/iblinter"
 iblinter.lint("./path/to/project", fail_on_warning: true, inline_mode: true)
 ```
+
+|     parameter   | default |
+|:---------------:|:-------:|
+| fail_on_warning |  false  |
+|   inline_mode   |  true   |
+
 
 ## Development
 
