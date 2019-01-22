@@ -25,6 +25,7 @@ module Danger
           JSON.parse(File.read(File.dirname(__FILE__) + "/support/fixtures/iblinter.json"))
         end
         allow(@iblinter).to receive(:iblinter).and_return(linter)
+        allow(@iblinter).to receive(:iblinter_installed?).and_return(true)
         allow(Dir).to receive(:pwd).and_return("/home/projects")
         allow(File).to receive(:exist?).and_return(true)
         @iblinter.lint("/home/projects")
