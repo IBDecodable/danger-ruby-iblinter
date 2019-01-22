@@ -23,7 +23,7 @@ module Danger
     # @return   [void]
     #
     def lint(path = Dir.pwd, fail_on_warning: false, inline_mode: true, options: {})
-      raise "iblinter is not installed" unless File.exist? @binary_path
+      raise "iblinter is not installed" unless iblinter_installed?
 
       issues = iblinter.lint(path, options)
       return if issues.empty?
@@ -55,6 +55,14 @@ module Danger
     end
 
     private
+
+    def iblinter_installed?
+      if !@binary_path.nil? && File.exist?(@binary_path)
+        return true
+      end
+
+      !`which iblinter`.empty?
+    end
 
     def markdown_issues(results, heading, emoji)
       message = "#### #{heading}\n\n"
