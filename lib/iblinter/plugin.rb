@@ -83,7 +83,7 @@ module Danger
       dir = "#{Dir.pwd}/"
       results.each do |r|
         filename = r["file"].gsub(dir, "")
-        send(method, r["message"], file: filename, line: nil)
+        send(method, r["message"], file: filename, line: 0)
       end
     end
   end
