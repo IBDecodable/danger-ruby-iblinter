@@ -1,0 +1,12 @@
+[
+  {
+    "message" : "Warning message",
+    "file" : "\/home\/projects/foo/File.xib",
+    "level" : "warning"
+  },
+  {
+    "message" : "Error message",
+    "file" : "\/home\/projects/bar/File.xib",
+    "level" : "error"
+  }
+]

@@ -1,0 +1,86 @@
+# frozen_string_literal: true
+
+require_relative "./iblinter"
+
+module Danger
+  # Lint Interface Builder files inside your projects.
+  # This is done using the [IBLinter](https://github.com/IBDecodable/IBLinter) tool.
+  #
+  # @example Specifying custom config file and path.
+  #
+  #          iblinter.config_file = ".iblinter.yml"
+  #          iblinter.lint
+  #
+  # @see  IBDecodable/IBLinter
+  # @tags swift
+  #
+  class DangerIblinter < Plugin
+    # The path to IBLinter"s configuration file
+    # @return  [void]
+    attr_accessor :config_file
+
+    # The path to IBLinter"s execution
+    # @return  [void]
+    attr_accessor :binary_path
+
+    # Lints IB files. Will fail if `iblinter` cannot be installed correctly.
+    # @return   [void]
+    #
+    def lint(path = Dir.pwd, fail_on_warning: false, inline_mode: true, options: {})
+      raise "iblinter is not installed" unless File.exist? @binary_path
+
+      issues = iblinter.lint(path, options)
+      return if issues.empty?
+
+      errors = issues.select { |v| v["level"] == "error" }
+      warnings = issues.select { |v| v["level"] == "warning" }
+
+      if inline_mode
+        send_inline_comment(warnings, fail_on_warning ? :fail : :warn)
+        send_inline_comment(errors, :fail)
+      else
+        message = "### IBLinter found issues\n\n"
+        message << markdown_issues(errors, "Errors", ":rotating_light:") unless errors.empty?
+        message << markdown_issues(warnings, "Warnings", ":warning:") unless warnings.empty?
+        markdown message
+      end
+
+      if errors.count.positive?
+        fail "Failed due to IBLinter errors"
+      elsif fail_on_warning && warnings.count.positive?
+        fail "Failed due to IBLinter warnings"
+      end
+    end
+
+    # Instantiate iblinter
+    # @return     [IBLinter]
+    def iblinter
+      IBLinter.new(@binary_path)
+    end
+
+    private
+
+    def markdown_issues(results, heading, emoji)
+      message = "#### #{heading}\n\n"
+
+      message << "|   | File | Hint |\n"
+      message << "|---| ---- | -----|\n"
+
+      results.each do |r|
+        filename = r["file"].split("/").last
+        hint = r["message"]
+        message << "| #{emoji} | #{filename} | #{hint} | \n"
+      end
+
+      message
+    end
+
+    def send_inline_comment(results, method)
+      dir = "#{Dir.pwd}/"
+      results.each do |r|
+        filename = r["file"].gsub(dir, "")
+        send(method, r["message"], file: filename, line: 0)
+      end
+    end
+  end
+end
