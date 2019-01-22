@@ -1,5 +1,7 @@
 # Danger IBLinter
 
+[![Build Status](https://travis-ci.org/IBDecodable/danger-ruby-iblinter.svg?branch=master)](https://travis-ci.org/IBDecodable/danger-ruby-iblinter)
+
 A danger plugin for IBLinter.
 
 ## Installation
