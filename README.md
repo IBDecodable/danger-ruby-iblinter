@@ -4,7 +4,7 @@ A danger plugin for IBLinter.
 
 ## Installation
 
-```
+```ruby
 gem 'danger-swiftlint'
 ```
 
@@ -12,7 +12,7 @@ This plugin requires `iblinter` executable binary.
 
 ## Usage
 
-```
+```ruby
 iblinter.binary_path = "./Pods/IBLinter/bin/iblinter"
 iblinter.lint("./path/to/project", fail_on_warning: true, inline_mode: true)
 ```
