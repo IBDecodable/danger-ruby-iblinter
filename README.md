@@ -7,7 +7,7 @@ A danger plugin for IBLinter.
 ## Installation
 
 ```ruby
-gem 'danger-swiftlint'
+gem 'danger-iblinter'
 ```
 
 This plugin requires `iblinter` executable binary.
