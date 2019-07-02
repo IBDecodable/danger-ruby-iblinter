@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class IBLinterRunner
-  def initialize(binary_path)
+  def initialize(binary_path, execute_command)
     @binary_path = binary_path
+    @execute_command = execute_command
   end
 
   def run(command)
@@ -16,8 +17,9 @@ class IBLinterRunner
   end
 
   def lint_command(options)
-    abs_binary_path = @binary_path.nil? ? "iblinter" : File.absolute_path(@binary_path)
-    "#{abs_binary_path} lint #{arguments(options.merge(reporter: 'json'))}"
+    executable = @execute_command
+    executable ||= @binary_path.nil? ? "iblinter" : File.absolute_path(@binary_path)
+    "#{executable} lint #{arguments(options.merge(reporter: 'json'))}"
   end
 
   # Parse options into shell arguments.

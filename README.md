@@ -16,6 +16,7 @@ This plugin requires `iblinter` executable binary.
 
 ```ruby
 iblinter.binary_path = "./Pods/IBLinter/bin/iblinter"
+iblinter.execute_command = "swift run iblinter"
 iblinter.lint("./path/to/project", fail_on_warning: true, inline_mode: true)
 ```
 

@@ -18,6 +18,7 @@ module Danger
     # The path to IBLinter"s execution
     # @return  [void]
     attr_accessor :binary_path
+    attr_accessor :execute_command
 
     # Lints IB files. Will fail if `iblinter` cannot be installed correctly.
     # @return   [void]
@@ -51,7 +52,7 @@ module Danger
     # Instantiate iblinter
     # @return     [IBLinterRunner]
     def iblinter
-      IBLinterRunner.new(@binary_path)
+      IBLinterRunner.new(@binary_path, @execute_command)
     end
 
     private
@@ -59,6 +60,9 @@ module Danger
     def iblinter_installed?
       if !@binary_path.nil? && File.exist?(@binary_path)
         return true
+      end
+      if !@execute_command.nil? && `#{@execute_command}`.include?("not found")
+        return false
       end
 
       !`which iblinter`.empty?
