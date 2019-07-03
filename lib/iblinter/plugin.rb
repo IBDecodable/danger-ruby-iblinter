@@ -62,11 +62,6 @@ module Danger
         return true
       end
 
-      unless @execute_command.nil?
-        system(@execute_command)
-        return $? == 0
-      end
-
       !`which iblinter`.empty?
     end
 
