@@ -61,8 +61,10 @@ module Danger
       if !@binary_path.nil? && File.exist?(@binary_path)
         return true
       end
-      if !@execute_command.nil? && `#{@execute_command}`.include?("not found")
-        return false
+
+      unless @execute_command.nil?
+        system(@execute_command)
+        return $? == 0
       end
 
       !`which iblinter`.empty?
