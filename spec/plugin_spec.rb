@@ -20,7 +20,7 @@ module Danger
       end
 
       it "inline comment works with relative path" do
-        linter = IBLinterRunner.new("/path/to/binary")
+        linter = IBLinterRunner.new("/path/to/binary", nil)
         allow(linter).to receive(:lint) do
           JSON.parse(File.read(File.dirname(__FILE__) + "/support/fixtures/iblinter.json"))
         end

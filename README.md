@@ -19,6 +19,11 @@ iblinter.binary_path = "./Pods/IBLinter/bin/iblinter"
 iblinter.lint("./path/to/project", fail_on_warning: true, inline_mode: true)
 ```
 
+```ruby
+iblinter.execute_command = "swift run iblinter"
+iblinter.lint("./path/to/project", fail_on_warning: true, inline_mode: true)
+```
+
 |     parameter   | default |
 |:---------------:|:-------:|
 | fail_on_warning |  false  |
