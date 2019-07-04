@@ -24,7 +24,7 @@ module Danger
     # @return   [void]
     #
     def lint(path = Dir.pwd, fail_on_warning: false, inline_mode: true, options: {})
-      if !@execute_command && iblinter_installed?
+      unless @execute_command || iblinter_installed?
         raise "iblinter is not installed"
       end
 
