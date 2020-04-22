@@ -29,6 +29,8 @@ module Danger
       end
 
       issues = iblinter.lint(path, options)
+      issues = filter_git_diff_issues(issues)
+      
       return if issues.empty?
 
       errors = issues.select { |v| v["level"] == "error" }
@@ -61,6 +63,16 @@ module Danger
       !`which iblinter`.empty?
     end
 
+    # Filters issues reported against changes in the modified files
+    #
+    # @return [Array] swiftlint issues
+    def filter_git_diff_issues(issues)
+      modified_files_info = git_modified_files_info()
+      return issues.select { |i| 
+           modified_files_info["#{i['file']}"] != nil && modified_files_info["#{i['file']}"].include?(i['line'].to_i) 
+        }
+    end
+    
     def markdown_issues(results, heading, emoji)
       message = "#### #{heading}\n\n"
 
