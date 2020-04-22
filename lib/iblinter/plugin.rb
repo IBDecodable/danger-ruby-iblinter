@@ -69,7 +69,7 @@ module Danger
     def filter_git_diff_issues(issues)
       modified_files_info = git_modified_files_info()
       return issues.select { |i| 
-           modified_files_info["#{i['file']}"] != nil && modified_files_info["#{i['file']}"].include?(i['line'].to_i) 
+           modified_files_info["#{i['file']}"] != nil
         }
     end
     
