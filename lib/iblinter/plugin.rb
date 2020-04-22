@@ -43,12 +43,6 @@ module Danger
         message << markdown_issues(warnings, "Warnings", ":warning:") unless warnings.empty?
         markdown message
       end
-
-      if errors.count.positive?
-        fail "Failed due to IBLinter errors"
-      elsif fail_on_warning && warnings.count.positive?
-        fail "Failed due to IBLinter warnings"
-      end
     end
 
     # Instantiate iblinter
