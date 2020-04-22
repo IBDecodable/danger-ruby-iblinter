@@ -73,6 +73,19 @@ module Danger
         }
     end
     
+    # Finds modified files and added files, creates array of files with modified line numbers
+    #
+    # @return [Array] Git diff changes for each file
+    def git_modified_files_info()
+        modified_files_info = Hash.new
+        updated_files = (git.modified_files - git.deleted_files) + git.added_files
+        updated_files.each {|file|
+            modified_lines = git_modified_lines(file)
+            modified_files_info[File.expand_path(file)] = modified_lines
+        }
+        modified_files_info
+    end
+    
     def markdown_issues(results, heading, emoji)
       message = "#### #{heading}\n\n"
 
