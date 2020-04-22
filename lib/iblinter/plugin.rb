@@ -86,6 +86,31 @@ module Danger
         modified_files_info
     end
     
+    # Gets git patch info and finds modified line numbers, excludes removed lines
+    #
+    # @return [Array] Modified line numbers i
+    def git_modified_lines(file)
+      git_range_info_line_regex = /^@@ .+\+(?<line_number>\d+),/ 
+      git_modified_line_regex = /^\+(?!\+|\+)/
+      git_removed_line_regex = /^[-]/
+      git_not_removed_line_regex = /^[^-]/
+      file_info = git.diff_for_file(file)
+      line_number = 0
+      lines = []
+      file_info.patch.split("\n").each do |line|
+          starting_line_number = 0
+          case line
+          when git_range_info_line_regex
+              starting_line_number = Regexp.last_match[:line_number].to_i
+          when git_modified_line_regex
+              lines << line_number
+          end
+          line_number += 1 if line_number > 0
+          line_number = starting_line_number if line_number == 0 && starting_line_number > 0
+      end
+      lines
+    end
+    
     def markdown_issues(results, heading, emoji)
       message = "#### #{heading}\n\n"
 
