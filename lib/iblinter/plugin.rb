@@ -40,7 +40,7 @@ module Danger
         send_inline_comment(warnings, fail_on_warning ? :fail : :warn)
         send_inline_comment(errors, :fail)
       else
-        message = "### IBLinter found issues\n\n"
+        message = "### IBLinter found issues\n\n".dup
         message << markdown_issues(errors, "Errors", ":rotating_light:") unless errors.empty?
         message << markdown_issues(warnings, "Warnings", ":warning:") unless warnings.empty?
         markdown message
@@ -118,7 +118,7 @@ module Danger
     end
     
     def markdown_issues(results, heading, emoji)
-      message = "#### #{heading}\n\n"
+      message = "#### #{heading}\n\n".dup
 
       message << "|   | File | Hint |\n"
       message << "|---| ---- | -----|\n"
